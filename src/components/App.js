@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="App">
       {cocktails ? <Cocktails/> : <Home explore={toggleCocktails}/>}
-      
     </div>
   );
 }

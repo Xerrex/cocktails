@@ -4,6 +4,7 @@ function Drink(props){
     const category = props.cocktail.strCategory;
     const alcoholic =  props.cocktail.strAlcoholic;
     const instructions = props.cocktail.strInstructions;
+    const price = 200;
     
     let ingredients = []; //{id, name}
     for(const keyV in props.cocktail){
@@ -23,7 +24,8 @@ function Drink(props){
         id: drinkID,
         image: image,
         category: category,
-        alcoholic: alcoholic
+        alcoholic: alcoholic,
+        price: price
       }
 
       props.order(drink);
@@ -32,7 +34,7 @@ function Drink(props){
     return(
       <div className="col">
         <div className="card">
-          <img src={image} className="card-img-top" alt="cocktail drink"/>
+          <img src={image} className="card-img-top w-auto h-auto" alt="cocktail drink"/>
           <div className="card-body">
             <h5 className="card-title">{category}, {alcoholic}</h5>
             <p className="card-text">{instructions}</p>
@@ -45,7 +47,10 @@ function Drink(props){
           </ul>
           <div className="card-body">
             <button className="card-link btn btn-primary" 
-                onClick={()=>handleOrderPlacing()}>Order cocktail</button>
+              onClick={()=>handleOrderPlacing()}>
+                <span className="badge bg-danger mx-2">ksh {price}</span>
+                Order
+            </button>
           </div>
         </div>
       </div>
