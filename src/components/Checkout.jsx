@@ -3,23 +3,22 @@ import { useState, useEffect } from "react";
 function Checkout (props){
   const [totalAmt, setTotalAmt] = useState(0);
 
+  useEffect(()=>{
+    totalAmount();
+  }, [props.orders]);
+
   const totalAmount = ()=>{
     let total = 0;
-    
-
     props.orders.forEach(order=>{
       total += order.price
     })
     setTotalAmt(total)
-
   }
 
-  useEffect(()=>{
-    totalAmount();
-  }, []);
+  const removeOrder = (orderID)=>{
+    props.removeOrder(orderID);
+  }
 
-  
-  
   return(
     <table className="table table-striped table-hover">
       <thead>
@@ -37,7 +36,8 @@ function Checkout (props){
               <td>{order.category} {order.alcoholic}</td>
             < td>{order.price}</td>
               <th scope="row">
-                <button type="button" className="btn btn-danger">Remove</button>
+                <button type="button" className="btn btn-danger" 
+                  onClick={()=>{removeOrder(order.id)}}>Remove</button>
               </th>
             </tr>);
         })}

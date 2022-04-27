@@ -32,6 +32,13 @@ function Cocktails(props){
     }
   }
 
+  const removeOrderDrink = (orderID)=>{
+    let myOrders = orders.slice();
+    myOrders = myOrders.filter(order=> order.id !== orderID);
+    console.log(`Order for drink "${orderID}" has been removed`);
+    setOrders(myOrders)
+  }
+
   const viewMyOrdersList = ()=>{
     setExploreCocktails(false);
   }
@@ -61,7 +68,7 @@ function Cocktails(props){
               { cocktails.map((cocktail) => {
                   return <Drink key={cocktail.idDrink} cocktail={cocktail} order={orderDrink}/>;
               })}
-            </div>):<Checkout orders={orders}/>
+            </div>):<Checkout orders={orders} removeOrder={removeOrderDrink}/>
           }
 
         </div>
