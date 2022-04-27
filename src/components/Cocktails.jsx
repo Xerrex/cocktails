@@ -46,7 +46,7 @@ function Cocktails(props){
 
   const onSelectLetterChange = (event)=>{
     const letter = event.target.value
-    getCocktails(letter);
+    getCocktails(letter.toLowerCase());
 
   }
 
@@ -70,21 +70,25 @@ function Cocktails(props){
 
       <div className="album py-5 bg-light">
         <div className="container">
-          <div className="row g-3 my-3">
+          {exploreCocktails && 
+            <div className="row g-3 my-3">
               <label htmlFor="selectCocktail" className="col">Choose Letter to show cocktails</label>
               <select className="form-select col" aria-label="Default select A" onChange={onSelectLetterChange}>
-                {alphabet_letters.map((letter)=>{
-                  return<option key={letter} value={letter.toLowerCase()}>{letter}</option>
+                  {alphabet_letters.map((letter)=>{
+                return<option key={letter} value={letter}>{letter}</option>
                 })}
               </select>
-          </div>
+            </div>
+          }
+          
 
           { exploreCocktails ?
             (<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               { cocktails.map((cocktail) => {
                   return <Drink key={cocktail.idDrink} cocktail={cocktail} order={orderDrink}/>;
               })}
-            </div>):<Checkout orders={orders} removeOrder={removeOrderDrink}/>
+            </div>)
+            :<Checkout orders={orders} removeOrder={removeOrderDrink}/>
           }
 
         </div>
