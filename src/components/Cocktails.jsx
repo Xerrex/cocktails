@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Drink from './Drink';
 import Checkout from './Checkout';
+import alphabet_letters from '../resources/letters';
 
 function Cocktails(props){
 
@@ -43,6 +44,12 @@ function Cocktails(props){
     setExploreCocktails(false);
   }
 
+  const onSelectLetterChange = (event)=>{
+    const letter = event.target.value
+    getCocktails(letter);
+
+  }
+
   return(
     <div>
       <section className="py-5 text-center container">
@@ -63,6 +70,15 @@ function Cocktails(props){
 
       <div className="album py-5 bg-light">
         <div className="container">
+          <div className="row g-3 my-3">
+              <label htmlFor="selectCocktail" className="col">Choose Letter to show cocktails</label>
+              <select className="form-select col" aria-label="Default select A" onChange={onSelectLetterChange}>
+                {alphabet_letters.map((letter)=>{
+                  return<option key={letter} value={letter.toLowerCase()}>{letter}</option>
+                })}
+              </select>
+          </div>
+
           { exploreCocktails ?
             (<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               { cocktails.map((cocktail) => {
