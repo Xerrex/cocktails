@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Drink from './Drink';
 import Checkout from './Checkout';
 import alphabet_letters from '../resources/letters';
+import OrderContext from '../context/OrderContext';
+
 
 function Cocktails(props){
 
+  const {orders} = useContext(OrderContext);
   const [cocktails, setCocktails] = useState([]);
-  const [orders, setOrders] = useState([]);
   let [exploreCocktails, setExploreCocktails] = useState(true);
 
   useEffect(()=> {
@@ -20,35 +22,35 @@ function Cocktails(props){
     setCocktails(data.drinks)
   }
 
-  const orderDrink = (drink) => {
-    let myOrders = orders.slice();
-    const orderExists = myOrders.filter((order)=>order.id === drink.id);
+  // const orderDrink = (drink) => {
+  //  TODO:moved to OrderContext
+  //   let myOrders = orders.slice();
+  //   const orderExists = myOrders.filter((order)=>order.id === drink.id);
 
-    if(orderExists.length ===1){
-      console.log(`Drink has already been ordered "${drink.id}"`);
-    }else{
-      console.log(`Drink has been ordered "${drink.id}"`);
-      myOrders.push(drink);
-      setOrders(myOrders);
-    }
-  }
+  //   if(orderExists.length ===1){
+  //     console.log(`Drink has already been ordered "${drink.id}"`);
+  //   }else{
+  //     console.log(`Drink has been ordered "${drink.id}"`);
+  //     myOrders.push(drink);
+  //     setOrders(myOrders);
+  //   }
+  // }
 
-  const removeOrderDrink = (orderID)=>{
-    let myOrders = orders.slice();
-    myOrders = myOrders.filter(order=> order.id !== orderID);
-    console.log(`Order for drink "${orderID}" has been removed`);
-    setOrders(myOrders)
-  }
+  // const removeOrderDrink = (orderID)=>{
+  //  TODO: moved to OrderContext
+  //   let myOrders = orders.slice();
+  //   myOrders = myOrders.filter(order=> order.id !== orderID);
+  //   console.log(`Order for drink "${orderID}" has been removed`);
+  //   setOrders(myOrders)
+  // }
 
-  const viewMyOrdersList = ()=>{
-    setExploreCocktails(false);
-  }
 
   const onSelectLetterChange = (event)=>{
     const letter = event.target.value
     getCocktails(letter.toLowerCase());
 
   }
+
 
   return(
     <div>
@@ -60,7 +62,8 @@ function Cocktails(props){
             <p>
               <button className="btn btn-success my-2 mx-2"
                 onClick={()=> setExploreCocktails(true)}> Explore Cocktails</button>
-              <button className="btn btn-secondary my-2" onClick={()=>viewMyOrdersList()}>
+              
+              <button className="btn btn-secondary my-2" onClick={()=> setExploreCocktails(false)}>
                 View Orders <span className="badge bg-primary">{orders.length}</span>
               </button>
             </p>
@@ -85,10 +88,10 @@ function Cocktails(props){
           { exploreCocktails ?
             (<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               { cocktails.map((cocktail) => {
-                  return <Drink key={cocktail.idDrink} cocktail={cocktail} order={orderDrink}/>;
+                  return <Drink key={cocktail.idDrink} cocktail={cocktail}/>;
               })}
             </div>)
-            :<Checkout orders={orders} removeOrder={removeOrderDrink}/>
+            :<Checkout/>
           }
 
         </div>

@@ -2,16 +2,19 @@ import { useState } from 'react';
 import './App.css';
 import Home from './Home';
 import Cocktails from './Cocktails';
+import { OrderProvider } from '../context/OrderContext';
 
 function App() {
-  const [cocktails, setCocktails] = useState(false);
+  const [viewCocktails, setViewCocktails] = useState(false);
 
 
-  const toggleCocktails = ()=> {setCocktails(!cocktails);}
+  const toggleViewCocktails = ()=> {setViewCocktails(!viewCocktails);}
   
   return (
     <div className="App">
-      {cocktails ? <Cocktails/> : <Home explore={toggleCocktails}/>}
+      {viewCocktails ? 
+        <OrderProvider><Cocktails/></OrderProvider> : 
+        <Home explore={toggleViewCocktails}/>}
     </div>
   );
 }
