@@ -1,5 +1,6 @@
 # Cocktails App
 - App to explore the cocktails.
+- [view app here](https://cocktails-xerrex.netlify.app/)
 
 
 ## Tools Used
