@@ -6,9 +6,3 @@ test('renders home page', () => {
   const title = screen.getByRole("heading", {name:/Expore Coctails/i});
   expect(title).toBeInTheDocument();
 });
-
-// test('renders Cocktails page', () => {
-//   render(<App />);
-//   const title = screen.getByRole("heading", {name:/Expore Coctails/i});
-//   expect(title).toBeInTheDocument();
-// });
