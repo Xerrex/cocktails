@@ -27,7 +27,7 @@ function Checkout (props){
         <tr>
           <th scope="col">Preview</th>
           <th scope="col">Description</th>
-          <th scope="col">Amount(KSH)</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -36,21 +36,13 @@ function Checkout (props){
             <tr key={order.id}>
               <td><img src={order.image} className="img-thumbnail h-25 w-25" alt="cocktail drink"/></td>
               <td>{order.category} {order.alcoholic}</td>
-            < td>{order.price}</td>
-              <th scope="row">
+              <td className="text-center">
                 <button type="button" className="btn btn-danger" 
                   onClick={()=>handleOrderRemove(order.id)}>Remove</button>
-              </th>
+              </td>
             </tr>);
         })}
       </tbody>
-      <tfoot>
-        <tr>
-          <td colSpan="2"> Total</td>
-          <td>{totalAmt}</td>
-          <td><button type="button" className="btn btn-info">Pay Amount</button></td>
-        </tr>
-      </tfoot>
     </table>
   );
 }

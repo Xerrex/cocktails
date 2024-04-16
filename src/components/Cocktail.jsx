@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import OrderContext from "../context/OrderContext";
 
-function Drink(props) {
+function Cocktail(props) {
   const {makeOrder} = useContext(OrderContext);
 
 
@@ -24,7 +24,7 @@ function Drink(props) {
     }
   }
 
-  const handleOrderPlacing = () => {
+  const handleAddToFavorites = () => {
     const drink = {
       id: drinkID,
       image: image,
@@ -39,36 +39,20 @@ function Drink(props) {
   return (
     <div className="col">
       <div className="card">
-        <img
-          src={image}
-          className="card-img-top w-auto h-auto"
-          alt="cocktail drink"
-        />
+        <img src={image} className="card-img-top w-auto h-auto" alt="cocktail drink" />
         <div className="card-body">
-          <h5 className="card-title">
-            {category}, {alcoholic}
-          </h5>
+          <h5 className="card-title">{category}, {alcoholic}</h5>
           <p className="card-text">{instructions}</p>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item active" aria-current="true">
-            Ingredients
-          </li>
+          <li className="list-group-item active" aria-current="true">Ingredients</li>
           {ingredients.map((ingredient) => {
-            return (
-              <li key={ingredient.id} className="list-group-item">
-                {ingredient.name}
-              </li>
-            );
+            return (<li key={ingredient.id} className="list-group-item">{ingredient.name}</li>);
           })}
         </ul>
         <div className="card-body">
-          <button
-            className="card-link btn btn-primary"
-            onClick={() => handleOrderPlacing()}
-          >
-            <span className="badge bg-danger mx-2">ksh {price}</span>
-            Order
+          <button className="card-link btn btn-primary" onClick={() => handleAddToFavorites()} >
+            <span className="badge bg-danger mx-2">ksh {price}</span> Add to favorites
           </button>
         </div>
       </div>
@@ -76,4 +60,4 @@ function Drink(props) {
   );
 }
 
-export default Drink;
+export default Cocktail;

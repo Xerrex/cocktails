@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import Drink from './Drink';
+import Cocktail from './Cocktail';
 import Checkout from './Checkout';
 import alphabet_letters from '../resources/letters';
 import OrderContext from '../context/OrderContext';
@@ -22,28 +22,6 @@ function Cocktails(props){
     setCocktails(data.drinks)
   }
 
-  // const orderDrink = (drink) => {
-  //  TODO:moved to OrderContext
-  //   let myOrders = orders.slice();
-  //   const orderExists = myOrders.filter((order)=>order.id === drink.id);
-
-  //   if(orderExists.length ===1){
-  //     console.log(`Drink has already been ordered "${drink.id}"`);
-  //   }else{
-  //     console.log(`Drink has been ordered "${drink.id}"`);
-  //     myOrders.push(drink);
-  //     setOrders(myOrders);
-  //   }
-  // }
-
-  // const removeOrderDrink = (orderID)=>{
-  //  TODO: moved to OrderContext
-  //   let myOrders = orders.slice();
-  //   myOrders = myOrders.filter(order=> order.id !== orderID);
-  //   console.log(`Order for drink "${orderID}" has been removed`);
-  //   setOrders(myOrders)
-  // }
-
 
   const onSelectLetterChange = (event)=>{
     const letter = event.target.value
@@ -64,7 +42,7 @@ function Cocktails(props){
                 onClick={()=> setExploreCocktails(true)}> Explore Cocktails</button>
               
               <button className="btn btn-secondary my-2" onClick={()=> setExploreCocktails(false)}>
-                View Orders <span className="badge bg-primary">{orders.length}</span>
+                View favorites<span className="badge bg-primary">{orders.length}</span>
               </button>
             </p>
           </div>
@@ -88,7 +66,7 @@ function Cocktails(props){
           { exploreCocktails ?
             (<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               { cocktails.map((cocktail) => {
-                  return <Drink key={cocktail.idDrink} cocktail={cocktail}/>;
+                  return <Cocktail key={cocktail.idDrink} cocktail={cocktail}/>;
               })}
             </div>)
             :<Checkout/>
