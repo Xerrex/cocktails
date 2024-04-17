@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import OrderContext from "../context/OrderContext";
+import FavoriteCocktailsContext from "../context/FavoriteCocktailsContext";
 
 function Cocktail(props) {
-  const {makeOrder} = useContext(OrderContext);
+  const {addFavCocktail} = useContext(FavoriteCocktailsContext);
 
 
-  const drinkID = props.cocktail.idDrink;
-  const image = `${props.cocktail.strDrinkThumb}/preview`;
-  const category = props.cocktail.strCategory;
-  const alcoholic = props.cocktail.strAlcoholic;
-  const instructions = props.cocktail.strInstructions;
-  const price = 200;
+  const cocktail = props.cocktail;
+  const drinkID = cocktail.idDrink;
+  const image = `${cocktail.strDrinkThumb}/preview`;
+  const category = cocktail.strCategory;
+  const alcoholic = cocktail.strAlcoholic;
+  const instructions = cocktail.strInstructions;
 
   let ingredients = []; //{id, name}
   for (const keyV in props.cocktail) {
@@ -30,10 +30,9 @@ function Cocktail(props) {
       image: image,
       category: category,
       alcoholic: alcoholic,
-      price: price,
     };
 
-    makeOrder(drink)
+    addFavCocktail(drink);
   };
 
   return (
@@ -52,7 +51,7 @@ function Cocktail(props) {
         </ul>
         <div className="card-body">
           <button className="card-link btn btn-primary" onClick={() => handleAddToFavorites()} >
-            <span className="badge bg-danger mx-2">ksh {price}</span> Add to favorites
+            <span className="badge bg-danger mx-2">Added</span> Add to favorites
           </button>
         </div>
       </div>
