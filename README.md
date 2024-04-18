@@ -10,7 +10,7 @@
 ## Getting Started
 * Clone the repository.
 * Change into the cloned repository directory.
-* Install dependancies with `npm install`.
+* Install dependencies with `npm install`.
 * Start the development server with `npm start`.
 * View project at [http://localhost:3000](http://localhost:3000) in your browser.
 * Run tests with `npm test`
