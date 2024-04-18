@@ -7,7 +7,6 @@ import FavoriteCocktails from './FavoriteCocktails';
 
 function ExploreCocktails(props){
 
-  // const {orders} = useContext(OrderContext);
   const {favCocktails} = useContext(FavoriteCocktailsContext);
   const [cocktails, setCocktails] = useState([]);
   const [showFavCocktails, setShowFavCocktails] = useState(false);

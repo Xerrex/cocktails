@@ -2,10 +2,11 @@ import { useContext } from "react";
 import FavoriteCocktailsContext from "../context/FavoriteCocktailsContext";
 
 function Cocktail(props) {
-  const {addFavCocktail} = useContext(FavoriteCocktailsContext);
-
-
+  const {addFavCocktail, checkIfAdded} = useContext(FavoriteCocktailsContext);
+  
   const cocktail = props.cocktail;
+  const added = checkIfAdded(cocktail.idDrink);
+
   const name = cocktail.strDrink;
   const image = `${cocktail.strDrinkThumb}/preview`;
   const category = cocktail.strCategory;
@@ -25,7 +26,12 @@ function Cocktail(props) {
   }
 
   const handleAddToFavorites = () => {
-    addFavCocktail(cocktail);
+    if (added){
+      alert(`"${name}" is already added`);
+    }else{
+      addFavCocktail(cocktail);
+    }
+    
   };
 
   return (
@@ -45,7 +51,7 @@ function Cocktail(props) {
         <div className="card-body">
         <p className="card-text">{instructions}</p>
           <button className="card-link btn btn-primary" onClick={() => handleAddToFavorites()} >
-            <span className="badge bg-danger mx-2">Added</span> Add to favorites
+            Add to favorites {added && <span className="badge bg-danger mx-2">Added</span>}
           </button>
         </div>
       </div>
