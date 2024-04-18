@@ -30,8 +30,8 @@ function ExploreCocktails(props){
   }
 
   return(
-    <div>
-      <div className="bg-dark text-secondary px-4 py-5 text-center h-100">
+    <div className="container-fluid">
+      <div className="row sticky-top  overflow-hidden bg-dark text-secondary px-4 py-5 text-center">
         <div className="py-5">
           <h1 className="display-5 fw-bold text-white">Explore Cocktails</h1>
           <div className="col-lg-6 mx-auto">
@@ -48,29 +48,31 @@ function ExploreCocktails(props){
           </div>
         </div>
       </div>
-      { showFavCocktails ? <FavoriteCocktails favCocktails={favCocktails} /> :(
-        <div className="album py-5 bg-light">
-          <div className="container">
-            <div className="row g-3 my-3">
-              <label htmlFor="selectCocktail" className="col">Choose Letter to show cocktails</label>
-              <select className="form-select col" aria-label="Default select A" onChange={onSelectLetterChange}>
-                  {alphabet_letters.map((letter)=>{
-                return<option key={letter} value={letter}>{letter}</option>
-                })}
-              </select>
-            </div>
-            
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              { cocktails.map((cocktail) => {
-                  return <Cocktail key={cocktail.idDrink} cocktail={cocktail}/>;
-              })}
-            </div>
-
-          </div>
-        </div>
-      )}
       
+      <div className="row">
+        { showFavCocktails ? <FavoriteCocktails favCocktails={favCocktails} /> :(
+          <div className="album py-5 bg-light mt-2">
+            <div className="container">
+              <div className="row g-3 my-3">
+                <label htmlFor="selectCocktail" className="col">Choose Letter to show cocktails</label>
+                <select className="form-select col" aria-label="Default select A" onChange={onSelectLetterChange}>
+                    {alphabet_letters.map((letter)=>{
+                  return<option key={letter} value={letter}>{letter}</option>
+                  })}
+                </select>
+              </div>
+              
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                { cocktails.map((cocktail) => {
+                    return <Cocktail key={cocktail.idDrink} cocktail={cocktail}/>;
+                })}
+              </div>
 
+            </div>
+          </div>
+        )}        
+      </div>
+      
     </div>
   );
 
