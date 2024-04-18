@@ -11,7 +11,7 @@ function FavoriteCocktails({favCocktails}){
           <th scope="col">Preview</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col"></th>
+          <th scope="col">{favCocktails.length}</th>
         </tr>
       </thead>
       <tbody>
