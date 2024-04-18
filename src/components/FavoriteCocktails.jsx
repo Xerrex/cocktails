@@ -1,44 +1,28 @@
-import { useState, useEffect, useContext } from "react";
-import OrderContext from "../context/OrderContext";
+import {useContext } from "react";
+import FavoriteCocktailsContext from "../context/FavoriteCocktailsContext";
 
-function Checkout (props){
-  const {orders, removeOrder} = useContext(OrderContext);
-  const [totalAmt, setTotalAmt] = useState(0);
-
-  useEffect(()=>{
-    totalAmount();
-  }, [orders]);
-
-  const totalAmount = ()=>{
-    let total = 0;
-    orders.forEach(order=>{
-      total += order.price
-    })
-    setTotalAmt(total)
-  }
-
-  const handleOrderRemove = (orderID)=>{
-    removeOrder(orderID);
-  }
+function FavoriteCocktails({favCocktails}){
+  const {removeFavCocktail} = useContext(FavoriteCocktailsContext);
 
   return(
     <table className="table table-striped table-hover">
       <thead>
         <tr>
+          <th scope="col">Name</th>
           <th scope="col">Preview</th>
           <th scope="col">Description</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        {orders.map((order)=>{
+        {favCocktails.map((favCocktail)=>{
           return(
-            <tr key={order.id}>
-              <td><img src={order.image} className="img-thumbnail h-25 w-25" alt="cocktail drink"/></td>
-              <td>{order.category} {order.alcoholic}</td>
+            <tr key={favCocktail.idDrink}>
+              <td>{favCocktail.strDrink}</td>
+              <td><img src={`${favCocktail.strDrinkThumb}/preview`} className="img-thumbnail h-25 w-25" alt="cocktail drink"/></td>
+              <td>{favCocktail.strCategory} {favCocktail.strAlcoholic}</td>
               <td className="text-center">
-                <button type="button" className="btn btn-danger" 
-                  onClick={()=>handleOrderRemove(order.id)}>Remove</button>
+                <button type="button" className="btn btn-danger" onClick={()=>removeFavCocktail(favCocktail.idDrink)}>Remove</button>
               </td>
             </tr>);
         })}
@@ -48,4 +32,4 @@ function Checkout (props){
 }
 
 
-export default Checkout;
+export default FavoriteCocktails;

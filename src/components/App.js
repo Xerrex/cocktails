@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import './App.css';
-import Cocktails from './Cocktails';
+import ExploreCocktails from './ExploreCocktails';
 import { FavoriteCocktailsProvider } from '../context/FavoriteCocktailsContext';
 
 function App() {
@@ -8,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <FavoriteCocktailsProvider>
-        <Cocktails/>
+        <ExploreCocktails/>
       </FavoriteCocktailsProvider>
     </div>
   );

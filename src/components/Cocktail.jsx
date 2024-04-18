@@ -6,7 +6,7 @@ function Cocktail(props) {
 
 
   const cocktail = props.cocktail;
-  const drinkID = cocktail.idDrink;
+  const name = cocktail.strDrink;
   const image = `${cocktail.strDrinkThumb}/preview`;
   const category = cocktail.strCategory;
   const alcoholic = cocktail.strAlcoholic;
@@ -25,14 +25,7 @@ function Cocktail(props) {
   }
 
   const handleAddToFavorites = () => {
-    const drink = {
-      id: drinkID,
-      image: image,
-      category: category,
-      alcoholic: alcoholic,
-    };
-
-    addFavCocktail(drink);
+    addFavCocktail(cocktail);
   };
 
   return (
@@ -40,8 +33,8 @@ function Cocktail(props) {
       <div className="card">
         <img src={image} className="card-img-top w-auto h-auto" alt="cocktail drink" />
         <div className="card-body">
-          <h5 className="card-title">{category}, {alcoholic}</h5>
-          <p className="card-text">{instructions}</p>
+          <h5 className="card-title">{name}</h5>
+          <p className="card-text">{category}, {alcoholic}</p>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item active" aria-current="true">Ingredients</li>
@@ -50,6 +43,7 @@ function Cocktail(props) {
           })}
         </ul>
         <div className="card-body">
+        <p className="card-text">{instructions}</p>
           <button className="card-link btn btn-primary" onClick={() => handleAddToFavorites()} >
             <span className="badge bg-danger mx-2">Added</span> Add to favorites
           </button>

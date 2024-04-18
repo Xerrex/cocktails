@@ -15,8 +15,8 @@ export function FavoriteCocktailsProvider({children}){
     
   }
 
-  const removeFavCocktail = (cocktail)=>{
-    const filteredFavCocktails = favCocktails.filter((favCocktail) => cocktail.id !== favCocktail.id);
+  const removeFavCocktail = (cocktailID)=>{
+    const filteredFavCocktails = favCocktails.filter((favCocktail) => cocktailID !== favCocktail.idDrink);
     setFavCocktails(filteredFavCocktails);
   }
   
